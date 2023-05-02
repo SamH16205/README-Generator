@@ -1,8 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
-const generateMarkdown= require('./utils/generateMarkdown.js')
 const fs = require('fs')
-
+const GenerateMarkdown = require('./utils/generateMarkdown.js')
 
 // TODO: Create an array of questions for user input
 const questions = ["Application title:", "Application description:", "Application installation instructions:", "Application usage information:", "Application contribution guidelines:", "Application test instructions:", "Enter your GitHub username.", "Enter your email address.", "Please select an applicable license."];
@@ -65,9 +64,9 @@ function init() {
       choices : ["None", "Apache License 2.0", "GNU General Public License v3.0", "MIT License", "BSD 2-Clause 'Simplified' License", "BSD 3-Clause 'New' or 'revised' License", "Boost Software License 1.0", "Creative Commons Zero v1.0 Universal", "Eclipse Public License", "GNU Affero General Public License 3.0", "GNU General Public License", "GNU Lesser General Public License", "Mozilla Public License 2.0", "The Unlicense"]
     },
   ])
-  .then((response) => {
-    console.log(response)
-})
+  .then((response) => 
+    writeToFile("generatedREADME.md", GenerateMarkdown.generateMarkdown(response))
+)
 }
 
 // Function call to initialize app
